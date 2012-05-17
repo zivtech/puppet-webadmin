@@ -47,18 +47,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     ensure => 'present',
   }
 
-  user { "webadmin":
-    name => $webadminuser,
-    home => "/home/$webadminuser",
-    comment => 'The webadmin user created or updated by the webadmin module.', 
-    ensure => 'present', 
-    shell => "/bin/bash",
-    groups => [
-      'tomcat6',
-      'www-data',
-    ], 
-  }
-
   file { "/etc/vim/vimrc":
     ensure => present,
     mode => 644,
