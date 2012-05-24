@@ -161,6 +161,9 @@ alias la='ls -ahl'
 #alias l='ls -CF'
 alias vim='vim -O'
 
+next_tag() { eval "git describe --contains $1 | sed -E 's/(.+)~(.+)$/\1 minus \2 commits/'"; }
+prev_tag() { eval "git describe --tags $1 | sed -E 's/(.+)-(.+)-g.+$/\1 plus \2 commits/'"; }
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

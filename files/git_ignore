@@ -12,3 +12,4 @@ Thumbs.db
 *.orig
 *.rej
 .sass-cache
+tags
