@@ -1,3 +1,4 @@
+# Package lists and user settings for administrative user. 
 class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
 
   # Copy our git-sh deb package into the vm for ins
@@ -22,23 +23,23 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
 
   package { 'base-package': 
     name => [
-        'screen',
         'byobu',
+        'curl',
+        'exuberant-ctags',
+        'iptables',
+        'mailutils',
+        'ntp',
+        'openssh-client',
+        'openssh-server',
+        'openssl',
+        'postfix',
+        'screen',
         'vim',
         'vim-common',
         'vim-runtime',
         'vim-tiny',
         'wget',
-        'curl',
-        'ntp',
-        'openssh-client',
-        'openssh-server',
-        'openssl',
-        'iptables',
-        'postfix',
-        'mailutils',
         'zip',
-        'exuberant-ctags',
       ],
       ensure => installed,
   }
