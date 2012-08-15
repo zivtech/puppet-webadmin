@@ -1,4 +1,4 @@
-# Package lists and user settings for administrative user. 
+# Package lists and user settings for administrative user.
 class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
 
   # Copy our git-sh deb package into the vm for ins
@@ -21,7 +21,7 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     require => [ File["/usr/src/git_sh_1.1.deb"], Package["base-package"] ],
   }
 
-  package { 'base-package': 
+  package { 'base-package':
     name => [
         'byobu',
         'curl',
@@ -101,5 +101,26 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     command => "/usr/sbin/ntpdate ntp.ubuntu.com",
     user => root,
     minute => ['*/3'],
+  }
+
+  file { '/usr/local/bin/runtags':
+    source => "puppet:///modules/webadmin/runtags",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
+
+  file { '/usr/local/bin/network-restart':
+    source => "puppet:///modules/webadmin/network-restart",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
+  }
+
+  file { '/usr/local/bin/make-random-password':
+    source => "puppet:///modules/webadmin/make-random-password",
+    owner => 'root',
+    group => 'root',
+    mode => 755,
   }
 }
