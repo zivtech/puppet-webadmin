@@ -97,6 +97,14 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     mode => 655,
   }
 
+  file { '/usr/share/git-core/templates/info/attribute':
+    require => Package['base-package'],
+    source => "puppet:///modules/webadmin/git_attribute",
+    owner => root,
+    group => root,
+    mode => 655,
+  }
+
   cron { "ntp time sync":
     command => "/usr/sbin/ntpdate ntp.ubuntu.com",
     user => root,
