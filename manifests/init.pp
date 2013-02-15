@@ -109,12 +109,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     mode => 655,
   }
 
-  cron { "ntp time sync":
-    command => "/usr/sbin/ntpdate ntp.ubuntu.com",
-    user => root,
-    minute => ['*/3'],
-  }
-
   file { '/usr/local/bin/runtags':
     source => "puppet:///modules/webadmin/runtags",
     owner => 'root',
