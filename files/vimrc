@@ -97,13 +97,10 @@ syntax on
 map <S-u> :redo<cr>
 map <C-n> :tabn<cr>
 map <C-p> :tabp<cr>
-
-" Map control-left/right to switch windows
-nn [5C <C-W>w
-nn [5D <C-W>W
+map <leader>p :!php -l "%:p"<cr>
 
 "Custom SVN blame
-vmap gl :<C-U>!svn blame <C-R>=expand("%:P") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap gl :<C-U>!git blame <C-R>=expand("%:P") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
