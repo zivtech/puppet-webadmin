@@ -82,17 +82,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     source => "puppet:///modules/webadmin/gitconfig"
   }
 
-  # TODO: Not sure what to do with this in the new world.
-  /*
-  file { 'managed sudo':
-    path => "/etc/sudoers",
-    owner => root,
-    group => root,
-    mode => 440,
-    source => "puppet:///modules/webadmin/sudoers",
-  }
-  */
-
   file { '/usr/share/git-core/templates/info/exclude':
     require => Package['base-package'],
     source => "puppet:///modules/webadmin/git_ignore",
