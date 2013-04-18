@@ -1,8 +1,7 @@
 # Package lists and user settings for administrative user.
 class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits webadmin::params {
-  package { "git":
-    ensure => installed,
-  }
+
+  ensure_resource('package', 'git', {'ensure' => 'installed' })
   /*
   # Our home built package is only for i386...
   if ($architecture == 'i386') {
