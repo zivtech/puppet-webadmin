@@ -19,6 +19,8 @@ class webadmin::params {
          'vim-enhanced'
       ]
       $packages = concat($base_packages, $rehl_packages)
+      $vimrc_path = '/etc/vimrc'
+      $vimrc = 'redhat.vimrc'
     }
     'Debian': {
   	  $inputrc_location = "/etc/bash.bashrc"
@@ -32,6 +34,8 @@ class webadmin::params {
         'exuberant-ctags',
       ]
       $packages = concat($base_packages, $deb_packages)
+      $vimrc_path = '/etc/vim/vimrc'
+      $vimrc = 'debian.vimrc'
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily} operatingsystem: ${::operatingsystem}, module ${module_name} only support osfamily RedHat and Debian.")

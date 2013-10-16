@@ -24,23 +24,16 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
   }
   */
 
-
-    # TODO: Fixme for CentOS
   package { 'base-package':
     name => $webadmin::params::packages,
     ensure => installed,
   }
-/*
-  group { ["www-data", "tomcat6"] :
-    ensure => 'present',
-  }
 
-  file { "/etc/vim/vimrc":
+  file { "$webadmin::params::vimrc_path":
     ensure => present,
     mode => 644,
-    source => "puppet:///modules/webadmin/vimrc",
+    source => "puppet:///modules/webadmin/${webadmin::params::vimrc}",
   }
-  */
 
   file { $webadmin::params::bashrc_location:
     ensure => present,
