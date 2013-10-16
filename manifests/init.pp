@@ -1,10 +1,8 @@
 # Package lists and user settings for administrative user.
-class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
+class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits webadmin::params {
 
-  package { "git-core":
-    ensure => installed,
-  }
-
+  ensure_resource('package', 'git', {'ensure' => 'installed' })
+  /*
   # Our home built package is only for i386...
   if ($architecture == 'i386') {
     # Copy our git-sh deb package into the vm for ins
@@ -24,30 +22,15 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
       require => [ File["/usr/src/git_sh_1.1.deb"], Package["base-package"] ],
     }
   }
+  */
 
+
+    # TODO: Fixme for CentOS
   package { 'base-package':
-    name => [
-        'byobu',
-        'curl',
-        'exuberant-ctags',
-        'iptables',
-        'mailutils',
-        'ntp',
-        'openssh-client',
-        'openssh-server',
-        'openssl',
-        'postfix',
-        'screen',
-        'vim',
-        'vim-common',
-        'vim-runtime',
-        'vim-tiny',
-        'wget',
-        'zip',
-      ],
-      ensure => installed,
+    name => $webadmin::params::packages,
+    ensure => installed,
   }
-
+/*
   group { ["www-data", "tomcat6"] :
     ensure => 'present',
   }
@@ -57,8 +40,9 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     mode => 644,
     source => "puppet:///modules/webadmin/vimrc",
   }
+  */
 
-  file { "/etc/bash.bashrc":
+  file { $webadmin::params::bashrc_location:
     ensure => present,
     owner => root,
     group => root,
@@ -66,7 +50,7 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     source => "puppet:///modules/webadmin/bash.bashrc",
   }
 
-  file { "/etc/inputrc":
+  file { $webadmin::params::inputrc_location:
     ensure => present,
     owner => root,
     group => root,
@@ -98,6 +82,7 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") {
     mode => 655,
   }
 
+  # TODO: Fixme for CentOS
   file { '/usr/local/bin/runtags':
     source => "puppet:///modules/webadmin/runtags",
     owner => 'root',
