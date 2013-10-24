@@ -23,7 +23,7 @@ class webadmin::params {
       $vimrc = 'redhat.vimrc'
     }
     'Debian': {
-  	  $inputrc_location = "/etc/bash.bashrc"
+  	  $bashrc_location = "/etc/bash.bashrc"
   	  $inputrc_location = "/etc/inputrc"
       $deb_packages = [
         'mailutils', # TODO: Does this package belong in this module?
