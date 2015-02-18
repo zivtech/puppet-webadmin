@@ -31,6 +31,10 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
     ensure => 'present',
   }
 
+  package { 'lynx':
+    ensure => 'present',
+  }
+
   if ($webadmin::params::platform_include) {
     include $webadmin::params::platform_include
   }
