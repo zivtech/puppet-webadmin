@@ -1,32 +1,38 @@
 # Package lists and user settings for administrative user.
 class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits webadmin::params {
 
-  ensure_resource('package', 'git', {'ensure' => 'installed' })
-  /*
-  # Our home built package is only for i386...
-  if ($architecture == 'i386') {
-    # Copy our git-sh deb package into the vm for ins
-    file { "/usr/src/git_sh_1.1.deb":
-      owner => root,
-      group => root,
-      mode => 644,
-      ensure => file,
-      source => "puppet:///modules/webadmin/git_sh_1.1.deb",
-    }
+  require git
 
-
-    package { "git-sh":
-      ensure => installed,
-      provider => 'dpkg',
-      source => "/usr/src/git_sh_1.1.deb",
-      require => [ File["/usr/src/git_sh_1.1.deb"], Package["base-package"] ],
-    }
+  package { 'byobu':
+    ensure => 'present',
   }
-  */
 
-  package { 'base-package':
-    name => $webadmin::params::packages,
-    ensure => installed,
+  package { 'curl':
+    ensure => 'present',
+  }
+
+  package { 'ntp':
+    ensure => 'present',
+  }
+
+  package { 'screen':
+    ensure => 'present',
+  }
+
+  package { 'wget':
+    ensure => 'present',
+  }
+
+  package { 'zip':
+    ensure => 'present',
+  }
+
+  package { 'vim-common':
+    ensure => 'present',
+  }
+
+  if ($webadmin::params::platform_include) {
+    include $webadmin::params::platform_include
   }
 
   file { "$webadmin::params::vimrc_path":
@@ -60,7 +66,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
   }
 
   file { '/usr/share/git-core/templates/info/exclude':
-    require => Package['base-package'],
     source => "puppet:///modules/webadmin/git_ignore",
     owner => root,
     group => root,
@@ -68,7 +73,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
   }
 
   file { '/usr/share/git-core/templates/info/attribute':
-    require => Package['base-package'],
     source => "puppet:///modules/webadmin/git_attribute",
     owner => root,
     group => root,
