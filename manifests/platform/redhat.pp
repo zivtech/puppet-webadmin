@@ -3,16 +3,6 @@
 #
 class webadmin::platform::redhat {
 
-  package { 'ctags':
-    ensure => 'present',
-  }
-
-  package { 'openssh-clients':
-    ensure => 'present',
-  }
-
-  package { 'vim-enhanced:
-    ensure => 'present',
-  }
+  ensure_packages(['openssh-clients', 'ctags'])
 
 }

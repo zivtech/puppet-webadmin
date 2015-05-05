@@ -19,10 +19,6 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
     ensure => 'present',
   }
 
-  package { 'wget':
-    ensure => 'present',
-  }
-
   package { 'zip':
     ensure => 'present',
   }
