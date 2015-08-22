@@ -3,33 +3,15 @@ class webadmin($webadminuser = "webadmin", $webadmingroup = "webadmin") inherits
 
   require git
 
-  package { 'byobu':
-    ensure => 'present',
-  }
-
-  package { 'curl':
-    ensure => 'present',
-  }
-
-  package { 'ntp':
-    ensure => 'present',
-  }
-
-  package { 'screen':
-    ensure => 'present',
-  }
-
-  package { 'zip':
-    ensure => 'present',
-  }
-
-  package { 'vim-common':
-    ensure => 'present',
-  }
-
-  package { 'lynx':
-    ensure => 'present',
-  }
+  ensure_packages([
+    'byobu',
+    'curl',
+    'ntp',
+    'screen',
+    'zip',
+    'vim-common',
+    'lynx',
+  ])
 
   if ($webadmin::params::platform_include) {
     include $webadmin::params::platform_include
