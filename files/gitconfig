@@ -3,6 +3,7 @@
   st = status
   ci = commit
   ba = branch -a
+  br = branch
   commush = !git commit -a && git push
   cu = !git commit -a && git push
   df = !git diff --no-prefix && git diff --staged --no-prefix
