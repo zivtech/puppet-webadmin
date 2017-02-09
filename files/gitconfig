@@ -13,6 +13,7 @@
   logs = log --pretty=format:'%C(yellow)%h%Creset %ad %C(yellow)|%Creset%C(red bold)%d%Creset %s %C(yellow)[%an]%Creset' --graph --date=short
   lol = log --stat --abbrev-commit
   stache = !echo "Waxing and twirling..." && echo && git stash $@
+  tag = tag --sort=v:refname
 [color]
   ui = auto
 [core]
