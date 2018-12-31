@@ -159,6 +159,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+shopt -s cdable_vars
+shopt -s cmdhist
+shopt -s lithist
+
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -ahl'
