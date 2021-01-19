@@ -159,6 +159,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# fix inputrc aliases that no longer work
+shopt -s cdable_vars
+shopt -s cdspell
+shopt -s lithist
+
 # some more ls aliases
 alias ll='ls -l'
 alias la='ls -ahl'
